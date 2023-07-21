@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
-// import 'react-pro-sidebar/dist/css/style.css';
+import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import { Box, IconButton, Typography, useTheme } from '@mui/material';
 import { Link } from 'react-router-dom';
+import 'react-pro-sidebar/dist/css/styles.css';
 import { tokens } from '../../theme';
-import HomeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 import PeopleOutlinedIcon from '@mui/icons-material/PeopleOutlined';
 import ContactsOutlinedIcon from '@mui/icons-material/ContactsOutlined';
 import ReceiptOutlinedIcon from '@mui/icons-material/ReceiptOutlined';
@@ -23,7 +23,9 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 	return (
 		<MenuItem
 			active={selected === title}
-			style={{ color: colors.grey[100] }}
+			style={{
+				color: colors.grey[100],
+			}}
 			onClick={() => setSelected(title)}
 			icon={icon}
 		>
@@ -33,7 +35,7 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 	);
 };
 
-const ProSidebar = () => {
+const Sidebar = () => {
 	const theme = useTheme();
 	const colors = tokens(theme.palette.mode);
 	const [isCollapsed, setIsCollapsed] = useState(false);
@@ -46,7 +48,7 @@ const ProSidebar = () => {
 					background: `${colors.primary[400]} !important`,
 				},
 				'& .pro-icon-wrapper': {
-					background: 'transparent !important',
+					backgroundColor: 'transparent !important',
 				},
 				'& .pro-inner-item': {
 					padding: '5px 35px 5px 20px !important',
@@ -59,7 +61,7 @@ const ProSidebar = () => {
 				},
 			}}
 		>
-			<Sidebar collapsed={isCollapsed}>
+			<ProSidebar collapsed={isCollapsed}>
 				<Menu iconShape='square'>
 					{/* LOGO AND MENU ICON */}
 					<MenuItem
@@ -87,7 +89,6 @@ const ProSidebar = () => {
 						)}
 					</MenuItem>
 
-					{/* USER */}
 					{!isCollapsed && (
 						<Box mb='25px'>
 							<Box display='flex' justifyContent='center' alignItems='center'>
@@ -99,7 +100,6 @@ const ProSidebar = () => {
 									style={{ cursor: 'pointer', borderRadius: '50%' }}
 								/>
 							</Box>
-
 							<Box textAlign='center'>
 								<Typography
 									variant='h2'
@@ -116,7 +116,6 @@ const ProSidebar = () => {
 						</Box>
 					)}
 
-					{/* MENU ITEMS */}
 					<Box paddingLeft={isCollapsed ? undefined : '10%'}>
 						<Item
 							title='Dashboard'
@@ -125,6 +124,7 @@ const ProSidebar = () => {
 							selected={selected}
 							setSelected={setSelected}
 						/>
+
 						<Typography
 							variant='h6'
 							color={colors.grey[300]}
@@ -153,6 +153,7 @@ const ProSidebar = () => {
 							selected={selected}
 							setSelected={setSelected}
 						/>
+
 						<Typography
 							variant='h6'
 							color={colors.grey[300]}
@@ -175,12 +176,13 @@ const ProSidebar = () => {
 							setSelected={setSelected}
 						/>
 						<Item
-							title='FAQ'
+							title='FAQ Page'
 							to='/faq'
 							icon={<HelpOutlineOutlinedIcon />}
 							selected={selected}
 							setSelected={setSelected}
 						/>
+
 						<Typography
 							variant='h6'
 							color={colors.grey[300]}
@@ -203,7 +205,7 @@ const ProSidebar = () => {
 							setSelected={setSelected}
 						/>
 						<Item
-							title='Line'
+							title='Line Chart'
 							to='/line'
 							icon={<TimelineOutlinedIcon />}
 							selected={selected}
@@ -218,9 +220,9 @@ const ProSidebar = () => {
 						/>
 					</Box>
 				</Menu>
-			</Sidebar>
+			</ProSidebar>
 		</Box>
 	);
 };
 
-export default ProSidebar;
+export default Sidebar;
