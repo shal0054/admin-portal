@@ -1,4 +1,3 @@
-import { TextIncrease } from '@mui/icons-material';
 import { Box, useTheme, Typography } from '@mui/material';
 import { tokens } from '../theme';
 import ProgressCircle from './ProgressCircle';
